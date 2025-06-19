@@ -1,7 +1,15 @@
-let naverVar1: never = 100;
-let naverVar2: never = true;
-let naverVar3: never = undefined;
-let naverVar4: never = null;
+type Good = { title: string; price: number; sale: boolean };
 
-// 전달시 unknown 은 타입오류 발생
-let testNuM:number = neverVar;
+const goodArr: Good[] = [
+  { title: "사과", price: 1000, sale: true },
+  { title: "딸기", price: 5000, sale: false },
+  { title: "메로나", price: 500, sale: true },
+];
+goodArr[0].title;
+
+const goodArrGeneric: Array<Good> = [
+  { title: "사과", price: 1000, sale: true },
+  { title: "딸기", price: 5000, sale: false },
+  { title: "메로나", price: 500, sale: true },
+];
+goodArrGeneric[0].title;
