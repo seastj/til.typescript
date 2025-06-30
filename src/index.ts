@@ -1,9 +1,3 @@
-class MathTool {
-  static PI: number = 3.14;
-  static multi(x: number, y: number) {
-    return x * y;
-  }
-}
-
-MathTool.PI;
-MathTool.multi(5, 6);
+const hong = { age: 10, study: true };
+const kim = { age: 20, study: false };
+const park = { age: 22, study: true };

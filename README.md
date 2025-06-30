@@ -1,398 +1,262 @@
-# class
+# 배열
 
-- 클래스는 `설계도` 이다.
-- 클래스 즉, 설계도를 기반으로 `객체(결과물-instance)` 를 만드는 것을 말함.
-- 목적은 `인스턴스`, 즉 `new 를 통해서 객체`를 대량 생산하는 것
-- class 는 문법으로 존재하며, 실무에서 직접 class 를 만드는 경우는 극히 드물다.
-- 백엔드를 js 로 만들 때는 이해 필수 입니다.
+- 데이터의 종류와 상관없이 묶어서 관리함.
+- 데이터들은 순서(index) 로 접근함.
 
-## 1. class 기본 모양
+## 1. 배열 만드는 법
 
 ```js
-class 클래스명 {
-  // 코드블럭
-  // 지역스코프
-}
-const 인스턴스 = new 클래스명();
-
-class Robot {
-  // 코드블럭
-  // 지역스코프
-}
-const ins = new Robot();
+const 배열명 = [요소1, 요소2, 요소3, ...];
+// 아래는 잘 활용하지 않음
+const 배열명 = new Array(5); // 5개의 데이터를 담아둘 배열
 ```
 
 ```ts
-class 클래스명 {
-  // 코드블럭
-  // 지역스코프
-}
-const 인스턴스: 클래스명 = new 클래스명();
+const 배열명: 종류[] = [요소1, 요소2, 요소3, ...];
+const 배열명: Array<종류> = [요소1, 요소2, 요소3, ...];
 
-class Robot {
-  // 코드블럭
-  // 지역스코프
-}
-const ins: Robot = new Robot();
+// 아래는 잘 활용하지 않음
+const 배열명: 종류[] = new Array(5); // 5개의 데이터를 담아둘 배열
 ```
 
-## 2. class 에서 new 하면 실행되는 함수는 약속
+## 2. 배열의 요소에 값을 찾아서 활용하기
 
-- constructor 메서드 : 디폴트 생성자 메서드
+- index 는 `0` 번 부터
 
 ```js
-class 클래스명 {
-  // 작성 안하셔도 기본적으로 new 하면 작동됩니다.
-  constructor() {}
-}
-const 인스턴스 = new 클래스명();
-
-class Robot {
-  // 메소드축약형
-  constructor() {
-    console.log("안녕");
-  }
-}
-const ins = new Robot();
+const 배열명 = [요소1, 요소2, 요소3];
+배열명[0];
+배열명[1];
+배열명[2];
 ```
 
 ```ts
-class 클래스명 {
-  // 작성 안하셔도 기본적으로 new 하면 작동됩니다.
-  constructor() {}
-}
-const 인스턴스: 클래스명 = new 클래스명();
-
-class Robot {
-  // 메소드축약형
-  constructor() {
-    console.log("안녕");
-  }
-}
-const ins: Robot = new Robot();
+const 배열명: 종류[] = [요소1, 요소2, 요소3];
+배열명[0];
+배열명[1];
+배열명[2];
 ```
 
-- constructor 메서드 : 속성의 초기 값을 셋팅해 줄수 있어요.
-
-## 3. 객체의 `속성`과 `속성값`을 셋팅한다.
-
-- {`속성`:`속성값`}
-- constructor 를 활용한다.
+## 3. 배열도 객체라서 속성이 있음. (`lenght`만 존재)
 
 ```js
-class Robot {
-  // 메소드축약형
-  constructor(who) {
-    this.who = who;
-    console.log(`${this.who}안녕`);
-  }
-}
-const ins1 = new Robot("여러분");
-console.log(ins1); // Robot { who: '여러분' }
-
-const ins2 = new Robot("팬 여러분");
-console.log(ins2); // Robot { who: '팬 여러분' }
-
-const ins3 = new Robot("주인님");
-console.log(ins3); // Robot { who: '주인님' }
-
-const ins4 = new Robot("친구야");
-console.log(ins4); // Robot { who: '친구야' }
+const 배열명 = [요소1, 요소2, 요소3];
+배열명.length; // 3 개
 ```
-
-- `TypeScript 만의 방식이 존재함.`
 
 ```ts
-class Robot {
-  // 여기는 클래스 내부라서 규칙이 있습니다.
-  // 속성을 정의해 줍니다.
-  who: string;
-
-  // 메소드축약형
-  constructor(who: string) {
-    this.who = who;
-    console.log(`${this.who}안녕`);
-  }
-}
-const ins1: Robot = new Robot("여러분");
-console.log(ins1); // Robot { who: '여러분' }
-
-const ins2: Robot = new Robot("팬 여러분");
-console.log(ins2); // Robot { who: '팬 여러분' }
-
-const ins3: Robot = new Robot("주인님");
-console.log(ins3); // Robot { who: '주인님' }
-
-const ins4: Robot = new Robot("친구야");
-console.log(ins4); // Robot { who: '친구야' }
+const 배열명: 종류[] = [요소1, 요소2, 요소3];
+배열명.length; // 3 개
 ```
 
-## 4. 객체의 `메서드` 셋팅하기
+## 4. 원본 배열이 변경되어지는 이미 만들어진 기능(메소드)
 
-- 메서드는 객체의 기능을 말함. (객체에 만든 함수를 메서드라고 함)
+- push : 배열의 마지막에 요소 `추가`
 
 ```js
-class Robot {
-  // 메소드축약형
-  constructor(who) {
-    this.who = who;
-    console.log(`${this.who}안녕`);
-  }
-  // 걷기 메소드
-  talk() {
-    console.log(`${this.who} 님과 같이 걸어요.`);
-  }
-  // 말하기 메소드
-  walk() {
-    console.log(`${this.who} 님과 대화하고 싶어요.`);
-  }
-}
-
-const ins1 = new Robot("여러분");
-console.log(ins1.who);
-ins1.talk();
-ins1.walk();
+const fruitsArr = ["사과", "딸기"];
+fruitsArr.push("수박"); // 사과, 딸기, 수박
+// 원본 배열이 훼손됨 !주의사항
 ```
-
-```ts
-class Robot {
-  // 속성 정의
-  who: string;
-  // 메소드축약형
-  constructor(who: string) {
-    this.who = who;
-    console.log(`${this.who}안녕`);
-  }
-  // 걷기 메소드
-  talk(): void {
-    console.log(`${this.who} 님과 같이 걸어요.`);
-  }
-  // 말하기 메소드
-  walk(): void {
-    console.log(`${this.who} 님과 대화하고 싶어요.`);
-  }
-}
-
-const ins1: Robot = new Robot("여러분");
-console.log(ins1.who);
-ins1.talk();
-ins1.walk();
-```
-
-## 5. 오로지 class 에만 있는 상속(extends)
-
-- `유전자` 처럼 생각하자.
 
 ```js
-class Animal {
-  constructor() {
-    this.eye = 2;
-  }
-  cry() {}
-  eat() {}
-}
-
-class Cat extends Animal {
-  꾹꾹이() {}
-}
-
-class Dog extends Animal {
-  달짖기() {}
-}
+const fruitsArr: string[] = ["사과", "딸기"];
+fruitsArr.push("수박"); // 사과, 딸기, 수박
+// 원본 배열이 훼손됨 !주의사항
 ```
 
-```ts
-class Animal {
-  // 속성 정의
-  eye: number;
-
-  constructor() {
-    this.eye = 2;
-  }
-  cry(): void {}
-  eat(): void {}
-}
-
-class Cat extends Animal {
-  꾹꾹이(): void {}
-}
-
-class Dog extends Animal {
-  달짖기(): void {}
-}
-
-const ani: Animal = new Animal();
-ani.cry();
-ani.eat();
-ani.eye;
-
-const cat: Cat = new Cat();
-cat.cry();
-cat.eat();
-cat.eye;
-cat.꾹꾹이();
-
-const dog: Dog = new Dog();
-dog.cry();
-dog.eat();
-dog.eye;
-dog.달짖기();
-```
-
-## 6. 상속에서 속성 값 전달하기
-
-- 부모님에게 값을 전달하기
+- pop : 마지막 요소가 제거됨
 
 ```js
-class Animal {
-  constructor(_blood) {
-    this.eye = 2;
-    // 혈액을 받겠다.
-    this.blood = _blood;
-  }
-  cry() {}
-  eat() {}
-}
-const ani = new Animal("A형");
-
-class Cat extends Animal {
-  // extends 를 하셨으므로
-  constructor(_blood) {
-    // 엄마
-    super(_blood);
-  }
-
-  꾹꾹이() {}
-}
-
-const cat = new Cat("B형");
-
-class Dog extends Animal {
-  constructor(_blood) {
-    super(_blood);
-  }
-
-  달짖기() {}
-}
-
-const dog = new Dog("B형");
+const fruitsArr = ["사과", "딸기"];
+fruitsArr.pop(); // 사과
+// 원본 배열이 훼손됨 !주의사항
 ```
 
-```ts
-class Animal {
-  // 속성정의
-  eye: number;
-  blood: string;
-  constructor(_blood: string) {
-    this.eye = 2;
-    // 혈액을 받겠다.
-    this.blood = _blood;
-  }
-  cry(): void {}
-  eat(): void {}
-}
-const ani: Animal = new Animal("A형");
-
-class Cat extends Animal {
-  // extends 를 하셨으므로
-  constructor(_blood: string) {
-    // 엄마
-    super(_blood);
-  }
-
-  꾹꾹이(): void {}
-}
-
-const cat: Cat = new Cat("B형");
-
-class Dog extends Animal {
-  constructor(_blood: string) {
-    super(_blood);
-  }
-
-  달짖기(): void {}
-}
-
-const dog: Dog = new Dog("B형");
-```
-
-## 오로지 TypeScript 에만 존재하는 문법
-
-- `public` 속성 접근 제어자 (누구나 접근가능)
-- `private` 속성 접근 제어자 (그 누구도 접근불가)
-- `protected` 속성 접근 제어자 (상속받은 대상 접근가능)
-
-```ts
-class BankAccount {
-  class BankAccount {
-  public user: string;
-  private balance: number;
-  constructor(user: string, balance: number) {
-    this.user = user;
-    this.balance = balance;
-  }
-  showBalance(){
-    this.balance; // 내부에서는 활용 가능
-  }
-}
-
-const iu: BankAccount = new BankAccount("아이유", 55478);
-iu.user;
-iu.balance; // 비공개 데이터라서 Error
-}
-```
-
-```ts
-class Animal {
-  public eye: number;
-  private nose: number;
-  protected lips: number;
-}
-
-// 상속받음.
-class Cat extends Animal {
-  constructor() {
-    super();
-  }
-  show() {
-    this.eye; // public 이라서 마음대로 접근
-    this.nose; // Error, private 라서 아무도 접근 불가
-    this.lips; // protected 는 자식이라서 허용됨
-  }
-}
-
-// 인스턴스 객체 생성
-const cat = new Cat();
-cat.eye; // pulic 이라서 마음대로 접근
-cat.nose; // ERROR, private 라서 아무도 접근 불가
-cat.lips; // ERROR, protected 라서 밖에서 접근 불가
-```
-
-## 클래스에서 new 없이 사용가능한 속성과 메소드
-
-- `Math.PI, Math.round(), Math.floor() ...`
-- `static` 을 붙이면 new 없이 사용가능
+- unshift : 가장 앞쪽에 요소 추가
 
 ```js
-class MathTool {
-  static PI = 3.14;
-  static multi(x, y) {
-    return x * y;
-  }
-}
+const fruitsArr = ["사과", "딸기"];
+fruitsArr.unshift("수박"); // 수박, 사과, 딸기
+// 원본 배열이 훼손됨 !주의사항
+```
 
-MathTool.PI;
-MathTool.multi(5, 6);
+- shift : 가장 앞쪽 요소 제거
+
+```js
+const fruitsArr = ["사과", "딸기"];
+fruitsArr.shift(); // 딸기
+// 원본 배열이 훼손됨 !주의사항
+```
+
+- splice : 원하는 인덱스로 부터 제거
+
+```js
+const fruitsArr = ["사과", "딸기", "수박"];
+fruitsArr.splice(1, 2); // 사과
+// 원본 배열이 훼손됨 !주의사항
+```
+
+- sort : 배열의 요소를 정렬해줌.
+
+```js
+const fruitsArr = ["사과", "딸기", "수박"];
+fruitsArr.sort(); // 딸기, 사과, 수박 (가나다 순)
+// 원본 배열이 훼손됨 !주의사항
+
+const enArr = ["k", "o", "r", "e", "a"];
+enArr.sort(); // a, e, k, o, r (abc순)
+// 원본 배열이 훼손됨 !주의사항
+
+const numArr = [2, 3, 9, 7, 5];
+numArr.sort(); // 2, 3, 5, 7, 9 (오름차순)
+// 원본 배열이 훼손됨 !주의사항
+
+const numArr = [1, 12, 3, 19, 7, 5];
+numArr.sort(); // 1, 12, 19, 3, 5, 7 (앞자리를 기준으로 먼저 출력)
+// 위의 결과는 일반적이지 않다.
+// 원본 배열이 훼손됨 !주의사항
+
+// 오름차순으로 정렬하려면 추가 작업
+// 원본 배열이 훼손됨 !주의사항
+const numArr = [1, 12, 3, 19, 7, 5];
+numArr.sort((a, b) => a - b); // 1, 3, 5, 7, 12, 19
+
+//내림차순으로 정렬하려면 추가 작업
+// 원본 배열이 훼손됨 !주의사항
+const numArr = [1, 12, 3, 19, 7, 5];
+numArr.sort((a, b) => b - a); // 19, 12, 7, 5, 3, 1
 ```
 
 ```ts
-class MathTool {
-  static PI: number = 3.14;
-  static multi(x: number, y: number) {
-    return x * y;
-  }
-}
+const fruitsArr: string[] = ["사과", "딸기", "수박"];
+fruitsArr.sort(); // 딸기, 사과, 수박 (가나다 순)
+// 원본 배열이 훼손됨 !주의사항
 
-MathTool.PI;
-MathTool.multi(5, 6);
+const enArr: string[] = ["k", "o", "r", "e", "a"];
+enArr.sort(); // a, e, k, o, r (abc순)
+// 원본 배열이 훼손됨 !주의사항
+
+const numArr: number[] = [2, 3, 9, 7, 5];
+numArr.sort(); // 2, 3, 5, 7, 9 (오름차순)
+// 원본 배열이 훼손됨 !주의사항
+
+const numArr: number[] = [1, 12, 3, 19, 7, 5];
+numArr.sort(); // 1, 12, 19, 3, 5, 7 (앞자리를 기준으로 먼저 출력)
+// 위의 결과는 일반적이지 않다.
+// 원본 배열이 훼손됨 !주의사항
+
+// 오름차순으로 정렬하려면 추가 작업
+// 원본 배열이 훼손됨 !주의사항
+const numArr: number[] = [1, 12, 3, 19, 7, 5];
+numArr.sort((a, b) => a - b); // 1, 3, 5, 7, 12, 19
+
+//내림차순으로 정렬하려면 추가 작업
+// 원본 배열이 훼손됨 !주의사항
+const numArr: number[] = [1, 12, 3, 19, 7, 5];
+numArr.sort((a, b) => b - a); // 19, 12, 7, 5, 3, 1
+```
+
+- reverse : 순서를 역으로 저장함.
+
+```js
+const numArr = [1, 2, 12, 25, 37, 30];
+numArr.reverse(); // [30, 37, 25, 12, 2, 1]
+// 원본 배열이 훼손됨 !주의사항
+```
+
+- fill : 요소에 값을 채운다.
+
+```js
+const numArr = [2, 5, 4, 7];
+numArr.fill(0); // 0, 0, 0, 0
+// 원본 배열이 훼손됨 !주의사항
+```
+
+## 5. 원본 배열을 복사해서 활용하는 이미 만들어진 기능(메소드)
+
+- 데이터 불변성(immutability) 을 유지하는 메소드 (`매우중요`)
+- `원본 배열`과 `복사본 배열`의 `요소를 비교`해서 다르면 화면 새로 그림(`리렌더링`)
+
+### 5.1. map (매우 자주 활용)
+
+- 원본 배열을 `복사`하여 새로운 배열 생성
+
+```js
+const 원본배열 = [1, 2, 3, 4];
+const 복사배열 = 원본배열.map(function (요소, 인덱스, 원본배열) {
+  return 요소;
+}); // [1,2,3,4]
+
+// html 예제
+const 복사배열 = 원본배열.map(function (요소, 인덱스, 원본배열) {
+  return `<div>${요소}</div>`;
+}); // [<div>1</div>, <div>2</div>, <div>3</div>, <div>4</div>]
+```
+
+### 5.2. filter (정말 자주 활용)
+
+- 조건이 `참`인 것만 모은 배열생성
+
+```js
+const numArr = [1, 4, 3, 5, 8, 9];
+const arr = numArr.filter(function (요소, 인덱스, 원본배열) {
+  // 홀수 만 추출
+  if (요소 % 2) {
+    return 요소;
+  }
+});
+```
+
+```js
+const hong = { age: 10, study: true };
+const kim = { age: 20, study: false };
+const park = { age: 22, study: true };
+const 학생목록배열 = [hong, kim, park];
+const 공부한사람배열 = 학생목록배열.filter(function (요소, 인덱스, 원본배열) {
+  if (요소.study) {
+    return 요소;
+  }
+});
+```
+
+```ts
+type UserType = { age: number; study: boolean };
+const hong: UserType = { age: 10, study: true };
+const kim: UserType = { age: 20, study: false };
+const park: UserType = { age: 22, study: true };
+const 학생목록배열: UserType[] = [hong, kim, park];
+const 공부한사람배열: UserType[] = 학생목록배열.filter(function (
+  요소: UserType,
+  인덱스: number,
+  원본배열: UserType[]
+) {
+  if (요소.study) {
+    return 요소;
+  }
+});
+```
+
+### 5.3. concat : 여러 개의 배열을 하나로 합친 배열
+
+```js
+const numArr = [2, 4, 5, 8, 2];
+const strArr = ["a", "b", "c"];
+const result = numArr.concat(strArr);
+// [2, 4, 5, 8, 2, 'a', 'b', 'c']
+```
+
+### 5.4. join : 배열을 하나의 문자열로 표현하기(자주 사용)
+
+```js
+const numArr = [1, 2, 3];
+const str = numArr.join(); // "1,2,3"
+const str = numArr.join("@"); // "1@2@3"
+```
+
+### 5.5. includes : 배열의 요소에 원하는 값이 있는가?
+
+```js
+const numArr = [1, 2, 3];
+const result = numArr.includes(3); // true
 ```
