@@ -318,9 +318,9 @@ const dog: Dog = new Dog("B형");
 
 ## 오로지 TypeScript 에만 존재하는 문법
 
-- public 속성 접근 제어자 (누구나 접근가능)
-- private 속성 접근 제어자 (그 누구도 접근불가)
-- protected 속성 접근 제어자 (상속받은 대상 접근가능)
+- `public` 속성 접근 제어자 (누구나 접근가능)
+- `private` 속성 접근 제어자 (그 누구도 접근불가)
+- `protected` 속성 접근 제어자 (상속받은 대상 접근가능)
 
 ```ts
 class BankAccount {
