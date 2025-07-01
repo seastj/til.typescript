@@ -260,3 +260,8 @@ const str = numArr.join("@"); // "1@2@3"
 const numArr = [1, 2, 3];
 const result = numArr.includes(3); // true
 ```
+
+```ts
+const numArr: number[] = [1, 2, 3];
+const result: boolean = numArr.includes(3); // true
+```
