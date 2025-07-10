@@ -1,13 +1,4 @@
-interface 약속 {
-  name: string;
+function mergeArr<T, U>(arr1: T[], arr2: U[]): (T | U)[] {
+  return [...arr1, ...arr2];
 }
-class Person implements 약속 {
-  name: string;
-}
-// 아래도 가능함. 하지만?
-type 약속타입 = {
-  name: string;
-};
-class Dog implements 약속타입 {
-  name: string;
-}
+let result: (string | number)[] = mergeArr([1, 2, 3], ["a", "b", "c"]);
