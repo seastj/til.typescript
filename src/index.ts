@@ -1,3 +1,11 @@
-const hong = { age: 10, study: true };
-const kim = { age: 20, study: false };
-const park = { age: 22, study: true };
+type IdolType = {
+  name: string;
+  age: number;
+  year: number;
+};
+
+let bts: IdolType = {
+  name: "BTS",
+  age: 20,
+  year: 2020,
+};
