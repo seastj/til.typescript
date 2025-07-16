@@ -121,3 +121,87 @@ let bts: IdolType = {
   year: 2020,
 };
 ```
+
+## 2. interface 키워드로 정의하기
+
+- 복잡한 타입에 대한 정의
+- type 과 비슷하지만 `객체가 대상`이다.
+
+```ts
+interface IdolType {
+  name: string;
+  age: number;
+  year: number;
+}
+
+let bts: IdolType = {
+  name: "BTS",
+  age: 20,
+  year: 2020,
+};
+```
+
+## type 과 interface 정의시 옵셔널 적용
+
+- 선택적 속성 적용
+
+```ts
+interface IdolType {
+  name: string;
+  age?: number; // 옵셔널
+  year: number;
+}
+
+let bts: IdolType = {
+  name: "BTS",
+  year: 2020,
+};
+```
+
+```ts
+type IdolType = {
+  name: string;
+  age?: number; // 옵셔널
+  year: number;
+};
+
+let bts: IdolType = {
+  name: "BTS",
+  year: 2020,
+};
+```
+
+## type 과 interface 정의시 읽기 전용 속성
+
+- 한번만 초기화 가능
+- 변경은 불가
+
+```ts
+interface IdolType {
+  readonly name: string; // 읽기 전용
+  age?: number; // 옵셔널
+  year: number;
+}
+
+let bts: IdolType = {
+  name: "BTS",
+  year: 2020,
+};
+bts.name = "홍길동"; // Error 변경불가
+bts.year = 2000;
+```
+
+```ts
+type IdolType = {
+  readonly name: string; // 읽기 전용
+  age?: number; // 옵셔널
+  year: number;
+};
+
+let bts: IdolType = {
+  name: "BTS",
+  year: 2020,
+};
+bts.name = "홍길동"; // Error 변경불가
+bts.year = 2000;
+```
