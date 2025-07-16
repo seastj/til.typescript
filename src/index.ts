@@ -1,30 +1,8 @@
-/**
- * API 요청을 한다.
- * 4가지 상태가 흔히 활용된다.
- *
- * "DONE" - 요청 실행 상태
- * "LOADING" - 요청 진행 중인 상태
- * "ERROR" - 요청 실패 상태
- * "INIT" - 초기 상태
- */
-export enum Status {
-  DONE = "DONE",
-  LOADING = "LOADING",
-  ERROR = "ERROR",
-  INIT = "INITIALIZE",
-}
+let numVar: any = 5;
+numVar = "Hello";
+numVar = true;
+numVar = 100;
 
-function runNetwork() {
-  let status = Status.INIT;
-  try {
-    status = Status.LOADING;
-    // 복잡한 처리 ...
-    // 복잡한 처리 ...
-    status = Status.DONE;
-  } catch (error) {
-    status = Status.ERROR;
-  } finally {
-    return status;
-  }
-}
-console.log(runNetwork() === "DONE");
+// as 강제로 데이터 타입을 지정하기 위한 처리
+let temp = numVar as string;
+temp.toUpperCase(); // 대문자 변환
