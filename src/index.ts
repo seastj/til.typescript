@@ -1,8 +1,16 @@
-let numVar: any = 5;
-numVar = "Hello";
-numVar = true;
-numVar = 100;
-
-// as 강제로 데이터 타입을 지정하기 위한 처리
-let temp = numVar as string;
-temp.toUpperCase(); // 대문자 변환
+interface Human {
+  name: string;
+  age: number;
+}
+interface Contacts {
+  phone: string;
+  address: string;
+}
+type HumanContacts = Human & Contacts;
+// 반드시 모든 속성이 존재해야 한다.
+let iu: HumanContacts = {
+  address: "서울",
+  age: 28,
+  name: "아이유",
+  phone: "000",
+};
