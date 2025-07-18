@@ -1,35 +1,22 @@
-interface Human {
-  type: "human";
-  height: number;
-}
 interface Dog {
-  type: "dog";
+  name: string;
+  age: number;
+}
+interface Cat {
+  name: string;
   breed: string;
 }
-
-interface Cat {
-  type: "cat";
-  koo: string;
+type DogCat = Dog | Cat;
+function isDog(a: DogCat): a is Dog {
+  return (a as Dog).age !== undefined;
 }
 
-type Animal = Human | Dog | Cat;
+const pp: DogCat = { name: "멍멍이", age: 10 };
+const cc: DogCat = { name: "멍멍이", breed: "샴" };
 
-let result: Animal =
-  Math.random() > 0.5
-    ? { type: "human", height: 180 }
-    : Math.random() > 0.5
-    ? { type: "dog", breed: "뽀삐" }
-    : { type: "cat", koo: "꾹꾹이" };
-
-// 개발자가 만든 type 속성을 이용해서 처리
-switch (result.type) {
-  case "human":
-    result; // let result: Human
-    break;
-  case "dog":
-    result; // let result: Dog
-    break;
-  case "cat":
-    result; // let result: Dog
-    break;
+if (isDog(pp)) {
+  // Dog 라는 코드 진행
+  pp; // const pp: Dog
+} else {
+  // Cat 이라는 코드 진행
 }
