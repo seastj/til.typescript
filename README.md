@@ -100,6 +100,34 @@ const key2: UserGetApiAll = "getPost";
 const key3: UserGetApiAll = "getPageNum";
 ```
 
+```ts
+// 모두 가져오기
+// 오타 줄여줌. 자동으로 속성명과 타입을 추출해줌
+/**
+ *  {
+      getUser: State;
+      getPageNum: State;
+      getPost: State;
+  }
+ */
+type UserGetApiAll2 = {
+  [key in keyof GlobalApiStatus]: GlobalApiStatus[key];
+};
+```
+
+```ts
+// 원하는 속성의 이름과 타입을 추출했는데 나는 옵셔널로 설정하고 싶다.
+/**
+ * type UserGetApiAll4 = {
+        getUser?: State;
+        getPageNum?: State;
+    }
+ */
+type UserGetApiAll4 = {
+  [key in Exclude<keyof GlobalApiStatus, "getPost">]?: GlobalApiStatus[key];
+};
+```
+
 ## 예제
 
 ```ts
