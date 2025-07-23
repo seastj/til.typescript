@@ -1,41 +1,22 @@
-interface Pet {
-  legs: number;
-  bark(): void;
-}
-interface Animal {
-  name: string;
-  age: number;
-}
-class Cat implements Pet, Animal {
-  name: string;
-  age: number;
-  legs: number;
-  constructor(name: string, age: number, legs: number) {
-    this.age = age;
-    this.name = name;
-    this.legs = legs;
+class Animal {
+  public name: string; // 모든 접근 가능
+  private age: number; // 모든 접근 불가
+  protected breeze: string; // 상속시 접근 가능
+  test() {
+    this.name;
+    this.age;
+    this.breeze;
   }
-  bark(): void {}
 }
 
-type AnimalPet = Animal & Pet;
-const d: AnimalPet = {
-  age: 20,
-  legs: 4,
-  name: "강아지",
-  bark() {
-    console.log("안녕");
-  },
-};
-
-class Cat2 implements Pet, Animal {
-  name: string;
-  age: number;
-  legs: number;
-  constructor(name: string, age: number, legs: number) {
-    this.age = age;
-    this.name = name;
-    this.legs = legs;
+class Cat extends Animal {
+  show() {
+    this.name; // 접근 가능
+    this.age; // Error 접근 불가, private
+    this.breeze; // 접근가능
   }
-  bark(): void {}
 }
+const c = new Cat();
+c.name; // 접근 가능
+c.age; // 접근 불가 private
+c.breeze; // 접근 불가 protected 클래스 내부에서만 가능
