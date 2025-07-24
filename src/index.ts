@@ -1,22 +1,15 @@
-class Animal {
-  public name: string; // 모든 접근 가능
-  private age: number; // 모든 접근 불가
-  protected breeze: string; // 상속시 접근 가능
-  test() {
-    this.name;
-    this.age;
-    this.breeze;
+class NumberPagination<T, K> {
+  // 필수속성
+  data: T[] = [];
+  message?: K;
+  lastFetchAt?: Date;
+
+  // new 하면 실행될 생성자 함수
+  constructor(data: T[], message?: K, lastFetchAt?: Date) {
+    this.data = data;
+    this.message = message;
+    this.lastFetchAt = lastFetchAt;
   }
 }
 
-class Cat extends Animal {
-  show() {
-    this.name; // 접근 가능
-    this.age; // Error 접근 불가, private
-    this.breeze; // 접근가능
-  }
-}
-const c = new Cat();
-c.name; // 접근 가능
-c.age; // 접근 불가 private
-c.breeze; // 접근 불가 protected 클래스 내부에서만 가능
+const a = new NumberPagination<string, number>(["아이유", "지민"], 2025);
