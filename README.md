@@ -201,3 +201,105 @@ const a = new NumberPagination<string, number>(["아이유", "지민"], 2025);
 ```
 
 ## 8. 상속에서 제네릭 활용하기
+
+```ts
+// T : 제네릭 (타입용 변수)
+class Base<T> {
+  // 필수 속성
+  data: T[];
+  // 인스턴스 생성 함수
+  constructor() {}
+}
+const a = new Base<string>();
+const b = new Base<number>();
+```
+
+- 상속의 예
+
+```ts
+// T : 제네릭 (타입용 변수)
+class Base<T> {
+  // 필수 속성
+  data: T[];
+  // 인스턴스 생성 함수
+  constructor() {}
+}
+class Child<T> extends Base<T> {
+  // 인스턴스 생성 함수
+  constructor() {
+    // 상속받은 경우는 Base 도 new 를 해야 합니다.
+    super();
+  }
+}
+const a = new Child<string>();
+```
+
+## 9. 메소드에서 제네릭 활용하기
+
+```ts
+class Idol<T> {
+  // 필수 속성
+  id: T;
+  name: string;
+  // 인스턴스 생성 함수
+  constructor() {}
+  // 메소드
+  sayHello<K>(year: K) {
+    return `${year}해에 인사합니다.`;
+  }
+}
+const a = new Idol<string>();
+a.sayHello(2025);
+```
+
+## 10. Implemetation 에서 제네릭 활용하기
+
+```ts
+interface Singer<T, K> {
+  name: T;
+  sing(year: K): void;
+}
+class Idol implements Singer<string, number> {
+  name: string;
+  sing(year: number): void {}
+}
+```
+
+## 11. Promise (비동기) 에서 제네릭 활용하기
+
+- Promise 예제
+
+```js
+const afterTwoSeconds = function () {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // 성공시 실행할 함수
+      resolve("성공이므로 실행함");
+    }, 2000);
+  });
+};
+const runner = async () => {
+  const res = await afterTwoSeconds();
+  console.log(res);
+};
+runner();
+```
+
+- ts 적용
+
+```ts
+// fetch 또는 axios 를 이용해서 데이터를 연동시 매우 자주 활용됨
+const afterTwoSeconds = function (): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // 성공시 실행할 함수
+      resolve("성공이므로 실행함");
+    }, 2000);
+  });
+};
+const runner = async () => {
+  const res = await afterTwoSeconds();
+  console.log(res);
+};
+runner();
+```
