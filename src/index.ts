@@ -1,14 +1,9 @@
-// fetch 또는 axios 를 이용해서 데이터를 연동시 매우 자주 활용됨
-const afterTwoSeconds = function (): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // 성공시 실행할 함수
-      resolve("성공이므로 실행함");
-    }, 2000);
-  });
-};
-const runner = async () => {
-  const res = await afterTwoSeconds();
-  console.log(res);
-};
-runner();
+type IU = "Iue";
+type Upper = Uppercase<IU>;
+// type Upper = "IUE" 모든글자를 대문자로 변환
+type Lower = Lowercase<IU>;
+// type Lower = "iue" 모든글자를 소문자로 변환
+type Capital = Capitalize<IU>;
+// type Capital = "Iue" 첫글자만 대문자로 변환
+type UnCaptial = Uncapitalize<IU>;
+// type UnCaptial = "iue" 첫글자만 소문자로 변환
