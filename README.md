@@ -1,4 +1,4 @@
-# ts 심화 -
+# ts 심화 - Utility Types
 
 - type 을 편리하게 재정의 하기
 
