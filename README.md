@@ -2,7 +2,7 @@
 
 - type 을 편리하게 재정의 하기
 
-## 1. Partial<Type>
+## 1. Partial`<Type>`
 
 - 가장 많이 사용함.
 - 모든 속성을 선택속성으로 Optinal
@@ -39,7 +39,7 @@ interface Idol {
 }
 ```
 
-## 2. Required<Type>
+## 2. Required`<Type>`
 
 - 모든 속성을 필수 속성으로 변경
 - `Required<Idol>`의 결과
@@ -53,7 +53,7 @@ interface Idol {
 }
 ```
 
-## 3. Readonly<Type>
+## 3. Readonly`<Type>`
 
 - 모든 속성을 읽기전용으로 변경
 - 객체의 값이 변경되지 않도록 함.
@@ -86,7 +86,7 @@ interface Idol {
 }
 ```
 
-## 4. Pick<Type, key>
+## 4. Pick`<Type, key>`
 
 - 특정 타입에서 원하는 속성만 골라서 새로운 타입으로 생성
 - 일부 속성만 사용하고 싶다.
@@ -115,7 +115,7 @@ interface Idol {
 }
 ```
 
-## 5. Omit<Type, key>
+## 5. Omit`<Type, key>`
 
 - 특정 속성만 제외한 나머지 속성으로 이루어진 타입을 생성한다.
 - 자주 활용됨
@@ -143,7 +143,7 @@ interface Idol {
 }
 ```
 
-## 6. Exclude<UnionType, ExcludeMembers>
+## 6. Exclude`<UnionType, ExcludeMembers>`
 
 - `유니온 타입`에서 특정한 타입을 제외한 나머지를 반환
 
@@ -152,7 +152,7 @@ type NoString = Exclude<string | number | boolean, string>;
 //  type NoString = number | boolean 생성됨
 ```
 
-## 7. Extract<UnionType, Members>
+## 7. Extract`<UnionType, Members>`
 
 - `유니온 타입`에서 `특정 속성만 뽑아서` 리턴
 
@@ -161,7 +161,7 @@ type NoString = Extract<string | number | boolean, string>;
 // type NoString = string 생성됨
 ```
 
-## 8. NonNullable<Type>
+## 8. NonNullable`<Type>`
 
 - `null` 과 `undefined` 를 제외한 타입리턴
 
@@ -170,7 +170,7 @@ type NoString = NonNullable<string | number | boolean | undefined | null>;
 // type NoString = string | number | boolean 생성됨
 ```
 
-## 9. Parameters<Typeof 함수명>
+## 9. Parameters`<Typeof 함수명>`
 
 - 함수의 타입의 `매개변수 타입`을 튜플 형태로 추출
 - 튜플은 배열 형태로 요소의 개수 및 타입이 지정된 것
@@ -182,7 +182,7 @@ type Params = Parameters<typeof sayHi>;
 // type Params = [age: number, name: string]
 ```
 
-## 10. ConstructorParametars<Typeof 클래스명>
+## 10. ConstructorParametars`<Typeof 클래스명>`
 
 - 클래스의 생성 함수 constructor 의 매개변수 타입
 
@@ -195,7 +195,7 @@ type IdolParams = ConstructorParameters<typeof Idol>;
 const a = new Idol("BTS", 20);
 ```
 
-## 11. ReturnType<Type>
+## 11. ReturnType`<Type>`
 
 - 함수의 반환타입을 추출
 
